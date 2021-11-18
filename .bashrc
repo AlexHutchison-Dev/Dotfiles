@@ -9,4 +9,3 @@
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
 alias la='ls -la'
-alias cdh='cd ~'
