@@ -1,0 +1,84 @@
+#  .d8888b.                d888     8888888888    .d888    d888
+# d88P  Y88b              d8888           d88P   d88P"    d8888
+# Y88b.                     888          d88P    888        888
+#  "Y888b.     88888b.      888         d88P     888888     888     888d888    .d88b.  
+#     "Y88b.   888 "88b     888      88888888    888        888     888P"     d8P  Y8b
+#       "888   888  888     888       d88P       888        888     888       88888888
+# Y88b  d88P   888 d88P     888      d88P        888        888     888       Y8b.
+#  "Y8888P"    88888P"    8888888   d88P         888      8888888   888        "Y8888
+#              888
+#              888
+#              888
+# 
+#    ____    __    ___  _   _         __    __    ____    __    ___  ____  ___
+#   (  _ \  /__\  / __)( )_( )       /__\  (  )  (_  _)  /__\  / __)( ___)/ __)
+#    ) _ < /(__)\ \__ \ ) _ (  ___  /(__)\  )(__  _)(_  /(__)\ \__ \ )__) \__ \
+# ()(____/(__)(__)(___/(_) (_)(___)(__)(__)(____)(____)(__)(__)(___/(____)(___/
+
+
+### Extends .bashrc with custom alisases and functions
+
+
+#####  Custom Aliases
+
+# General Aliases
+alias la='ls -la'
+alias ll='ls -l'
+alias lc='ls -CHG'
+alias cl='clear'
+alias cp='cp -i'	#interupts copy before overwriting a file and prompts user
+alias python='python3'
+#alias cd='cd && ll'
+
+# Git aliases
+alias ga.='git add .'
+alias ga='git add'
+alias gc='git commit -m '
+alias gs='git status'
+alias gpo='git push origin'
+alias gpom='git push origin master'
+alias gp='git push'
+
+# Apt Aliases
+alias sapuu='sudo apt update && sudo apt upgrade'
+alias sapud='sudo apt update'
+alias sapug='sudo apt upgrde'
+alias aptuu='sudo apt-get update && sudo apt-get upgrade'
+
+# Vim aliases
+alias vim='lvim'
+alias nvim='lvim'
+alias serve="browser-sync start -s -f --no-notify --host $LOCAL_IP --port 9000" 
+
+#####  Custom Functions
+
+# install deb packages
+function sapi() { sudo apt-get install "$0"; }
+
+
+#  Make directory and change into it
+function mkcd {
+    mkdir "$0";
+    cd "$0";
+}
+
+
+# Find Directory
+function findd() { sudo find "$0" -type d -name "$2" 2>/dev/null; }
+
+
+# Find File
+function findf() { sudo find "$0" -type f -name "$2" 2>/dev/null; }
+
+
+#Run project
+function runproj() {
+    cd ~/Documents/Projects/Mern-Cal;
+    npm run dev;
+}
+
+#Cd into project
+function proj() {
+    source proj.sh
+}   
+
