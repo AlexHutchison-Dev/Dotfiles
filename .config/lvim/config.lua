@@ -21,7 +21,7 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- unmap a default keymapping
--- lvim.keys.normal_mode["<C-Up>"] = ""
+-- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
@@ -121,30 +121,28 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { exe = "black",
-    filetypes = {'python'},
-  },
-  -- { exe = "isort", filetypes = { "python" } },
-  -- {
-  --   exe = "prettier",
-  --   ---@usage arguments to pass to the formatter
-  --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --   args = { "--print-with", "100" },
-  --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-  --   filetypes = { "typescript", "typescriptreact" },
-  -- },
+  { exe = "black", filetypes = { "python" } },
+--   { exe = "isort", filetypes = { "python" } },
+--   {
+--     exe = "prettier",
+--     ---@usage arguments to pass to the formatter
+--     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+--     args = { "--print-with", "100" },
+    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+--     filetypes = { "typescript", "typescriptreact" },
+--   },
 }
 
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  { exe = "flake8"},
-  -- {
-  --   exe = "shellcheck",
-  --   ---@usage arguments to pass to the formatter
-  --   -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-  --   args = { "--severity", "warning" },
-  -- },
+  { exe = "flake8", filetypes = { "python" } },
+--   {
+--     exe = "shellcheck",
+--     ---@usage arguments to pass to the formatter
+--     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+--     args = { "--severity", "warning" },
+--   },
 --   {
 --     exe = "codespell",
 --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
@@ -154,22 +152,23 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-    -- {"folke/tokyonight.nvim"},
-    -- {
-    --   "folke/trouble.nvim",
-    --   cmd = "TroubleToggle",
-    -- }, -- ColorScheme's
+    {
+      "folke/trouble.nvim",
+      cmd = "TroubleToggle",
+    },
+  
+    -- ColorScheme's
     {"folke/tokyonight.nvim"},
     {"cocopon/iceberg.vim"},
     {"arcticicestudio/nord-vim"},
     {'bluz71/vim-nightfly-guicolors'},
     {"mhartington/oceanic-next"},
     -- General Plugins
-    -- {
-    --     "ray-x/lsp_signature.nvim",
-    --     config = function() require"lsp_signature".on_attach() end,
-    --     event = "InsertEnter"
-    -- },
+     {
+         "ray-x/lsp_signature.nvim",
+         config = function() require"lsp_signature".on_attach() end,
+         event = "InsertEnter"
+     },
         {
       "p00f/nvim-ts-rainbow",
       config = function() require"nvim-treesitter.configs".setup {
@@ -281,7 +280,7 @@ lvim.plugins = {
           side = "left",
           initial_width = 35,
           update_interval = 1000,
-          sections = { "datetime", "git-status", "lsp-diagnostics", },
+          sections = { "datetime", "git-status", "lsp-diagnostics", "todos"},
           section_separator = "-----",
           todos = {
             ignored_paths = {'~'}, -- ignore certain paths, this will prevent huge folders like $HOME to hog Neovim with TODO searching
@@ -290,6 +289,8 @@ lvim.plugins = {
     end,
   },
 {'vimwiki/vimwiki'},
+
+
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)

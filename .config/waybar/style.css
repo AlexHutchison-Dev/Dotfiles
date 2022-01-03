@@ -1,0 +1,271 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+ 
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+ /*
+   Custom color scheme
+*/
+
+@define-color highlight #821cad ;
+@define-color base1  rgba(1, 22, 39, 1);
+@define-color green #addb67;
+@define-color blue #82aaff;
+@define-color pink #c792ea;
+@define-color teal #7fdbea;
+@define-color white #bebebe;
+ 
+ 
+@keyframes blink-warning {
+    70% {
+        color: white;
+    }
+ 
+    to {
+        color: white;
+        background-color: orange;
+    }
+}
+ 
+@keyframes blink-critical {
+    70% {
+      color: white;
+    }
+ 
+    to {
+        color: white;
+        background-color: red;
+    }
+}
+ 
+ 
+/* -----------------------------------------------------------------------------
+ * Base styles
+ * -------------------------------------------------------------------------- */
+ 
+/* Reset all styles */
+* {
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 1px;
+    padding: 0;
+}
+
+/* The whole bar */
+#waybar {
+    background: transparent;
+    color: @white;
+    background-color: @base1;
+    font-family: JetBrains Mono;
+    font-size: 12px;
+    border-radius: 100px;
+}
+
+/* Each module */
+#battery,
+#clock,
+#backlight,
+#cpu,
+#custom-keyboard-layout,
+#memory,
+#mode,
+#custom-weather,
+#network,
+#pulseaudio,
+#temperature,
+#tray,
+#idle_inhibitor,
+#custom-PBPbattery{
+      padding:0.2rem 0.4rem;
+      margin: 3px 3px;
+      border-radius: 30px;
+      color: @base1;
+}
+
+
+/* -----------------------------------------------------------------------------
+ * Module background colors
+ * -------------------------------------------------------------------------- */
+ 
+#network {
+  background-color: @pink;
+}
+
+#idle_inhibitor {
+  background-color: @green;
+}
+
+#memory {
+  background-color: @blue;
+}
+
+#cpu {
+  background-color: @teal;
+}
+
+#pulseaudio {
+  background-color: @pink;
+}
+
+#custom-keyboard-layout {
+  background-color: @green;
+}
+
+#battery {
+  background-color: @blue;
+}
+
+#custom-PBPbattery {
+  background-color: @blue;
+}
+ 
+#backlight {
+  background-color: @teal;
+}
+
+#clock {
+  color: @white;
+}
+
+#custom-power {
+  background-color: @blue;
+  border-radius: 30px;
+  padding: 0px 12px;
+  color: @base1;
+}
+
+#custom-weather {
+  color: @white;
+}
+/* -----------------------------------------------------------------------------
+ * Module styles
+ * -------------------------------------------------------------------------- */
+ 
+#battery {
+        
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+}
+ 
+#battery.warning {
+        color: orange;
+}
+ 
+#battery.critical {
+        color: red;
+}
+ 
+#battery.warning.discharging {
+        animation-name: blink-warning;
+        animation-duration: 3s;
+}
+ 
+#battery.critical.discharging {
+        animation-name: blink-critical;
+        animation-duration: 2s;
+}
+
+#cpu{
+ 
+}
+#cpu.warning {
+        color: orange;
+}
+ 
+#cpu.critical {
+        color: red;
+}
+ 
+#memory {
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+}
+ 
+#memory.warning {
+        color: orange;
+ }
+ 
+#memory.critical {
+        color: red;
+        animation-name: blink-critical;
+        animation-duration: 2s;
+        padding-left:5px;
+        padding-right:5px;
+}
+ 
+#mode {
+    background: @highlight;
+    border-bottom: 3px transparent;
+    color:white;
+    margin-left: 5px;
+    padding:7;
+  }
+
+ 
+#network.disconnected {
+        color: orange;
+}
+
+#pulseaudio{
+padding-top:6px;
+} 
+#pulseaudio.muted {
+    color: @highlight; 
+}
+ 
+#temperature.critical {
+        color: red;
+}
+ 
+#window {
+        font-weight: bold;
+}
+ 
+#workspaces{
+font-size:13px;
+}
+#workspaces button {
+    border-bottom: 3px solid transparent;
+    margin-bottom: 0px;
+    padding:0px;
+    
+}
+
+#workspaces button.focused {
+     border: 3px solid  @highlight;
+     border-radius: 25%;
+     margin-bottom: 1px;
+     padding-left:0;
+  }
+
+#workspaces button.urgent {
+        border-color: #c9545d;
+        color: #c9545d;
+}
+ 
+#custom-power{
+   margin-left:15px;
+   margin-right:15px;
+   font-size:15px;
+}   
+#custom-launcher{
+   font-size:15px;
+   margin-left:15px;
+   margin-right:10px;
+ }   
+
+#backlight.icon{
+ padding-right:1px;
+ font-size: 13px;	
+}
+
+

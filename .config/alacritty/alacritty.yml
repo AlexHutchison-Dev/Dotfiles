@@ -425,6 +425,7 @@ background_opacity: 0.92
 #   - (Windows) powershell
 shell:
   program: /usr/bin/zsh
+  # program: /usr/bin/zsh
 #  args:
 #    - --login
 
